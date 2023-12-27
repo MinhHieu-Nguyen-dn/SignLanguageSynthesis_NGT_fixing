@@ -5,6 +5,7 @@ input(str): glossed NGT sentence, separated by spaces
 output(sigml-player open): avatar movement
 """
 import tempfile
+import os
 import sys
 import functionsGrammar as fg
 import functionsMain as fm
@@ -33,9 +34,16 @@ def main(sentence, flag=False):
     sigmlsentence = preamble + sigml + postamble
 
     # Creates temporary file
-    tempSigmlFile = tempfile.NamedTemporaryFile(suffix='.sigml')
+    # Get the directory of the current script
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    # Append your folder name
+    save_temp_path = os.path.join(current_dir, 'temp_files_storage')
+    # Create the directory if it doesn't exist
+    os.makedirs(save_temp_path, exist_ok=True)
+    tempSigmlFile = tempfile.NamedTemporaryFile(suffix='.sigml', delete=False, dir=save_temp_path)
     tempSigmlFile.write(sigmlsentence.encode())
     tempSigmlFile.read()
+    tempSigmlFile.close()  # Close the file so it can be reopened later
 
     # Feeds it to sigml-player
     ss.sendsigml([tempSigmlFile.name])
