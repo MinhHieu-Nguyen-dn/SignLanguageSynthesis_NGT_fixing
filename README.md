@@ -23,6 +23,11 @@ This program was developed and tested using Python 3.6.1 on Ubuntu 16.04.6.
 
 The program can be used by making a call to main.py with a glossed NGT sentence. The JASigning avatar will sign the sentence in NGT
 as long as the SiGML Player is running.
+
+Install the SiGML Player:  
+1. https://vh.cmp.uea.ac.uk/index.php/Driving_the_SiGML_Player_App
+2. https://vhg.cmp.uea.ac.uk/tech/jas/vhg2020/
+
 #### Possible flags to add to call to main.py:
 <ul>
 <li><i>spell</i><br>Fingerspells complete input<br><b>Usage: main.py spell 'string'</b></li>
